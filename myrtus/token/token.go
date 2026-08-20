@@ -20,7 +20,7 @@ const (
 	LEFT_PAREN  = "("
 	RIGHT_BRACE = "}"
 	LEFT_BRACE  = "{"
-	COMMI       = ","
+	COMMA     = ","
 	SEMICOLON   = ";"
 
 	ILLEGAL = "ILLEGAL"
