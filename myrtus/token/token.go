@@ -26,3 +26,15 @@ const (
 	ILLEGAL = "ILLEGAL"
 	EOF     = "EOF"
 )
+
+var keywords = map[string]TokenType{
+	"fn" : FUNCTION,
+	"let" : LET,
+}
+func GetKeywordOrIdentType(literal string) TokenType{
+	if keyword, ok := keywords[literal]; ok {
+		return keyword
+	}
+	return IDENT
+
+}
