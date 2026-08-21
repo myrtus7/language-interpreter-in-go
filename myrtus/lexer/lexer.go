@@ -42,7 +42,11 @@ func (l *Lexer) generateToken() token.Token {
 	case ')':
 		tok = createToken(token.RIGHT_PAREN, l.char)
 	case '=':
-		tok = createToken(token.ASSIGN, l.char)
+		if l.peekChar() == '=' {
+			tok = l.createTwoCharToken(l.peekChar(), token.EQ)
+		} else {
+			tok = createToken(token.ASSIGN, l.char)
+		}
 	case '+':
 		tok = createToken(token.PLUS, l.char)
 	case ';':
@@ -52,7 +56,12 @@ func (l *Lexer) generateToken() token.Token {
 	case '-':
 		tok = createToken(token.MINUS, l.char)
 	case '!':
-		tok = createToken(token.BANG, l.char)
+		if l.peekChar() == '=' {
+			tok = l.createTwoCharToken(l.peekChar(), token.NOT_EQ)
+		} else {
+			tok = createToken(token.BANG, l.char)
+		}
+
 	case '*':
 		tok = createToken(token.ASTERISK, l.char)
 	case '/':
@@ -115,4 +124,18 @@ func (l *Lexer) readNumber() string {
 
 func isDigit(char byte) bool {
 	return char >= '0' && char <= '9'
+}
+
+func (l *Lexer) peekChar() byte {
+	if l.readPosition >= len(l.input) {
+		return 0
+	} else {
+		return l.input[l.readPosition]
+	}
+}
+
+func (l *Lexer) createTwoCharToken(peekedChar byte, tokenType token.TokenType) token.Token {
+	literal := string(l.char) + string(peekedChar)
+	l.readChar()
+	return token.Token{Type: tokenType, Literal: literal}
 }

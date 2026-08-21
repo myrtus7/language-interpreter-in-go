@@ -34,6 +34,9 @@ const (
 	ASTERISK    = "*"
 	SLASH       = "/"
 
+	EQ     = "=="
+	NOT_EQ = "!="
+
 	ILLEGAL = "ILLEGAL"
 	EOF     = "EOF"
 )
