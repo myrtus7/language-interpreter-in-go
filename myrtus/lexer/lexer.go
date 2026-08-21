@@ -49,6 +49,18 @@ func (l *Lexer) generateToken() token.Token {
 		tok = createToken(token.SEMICOLON, l.char)
 	case ',':
 		tok = createToken(token.COMMA, l.char)
+	case '-':
+		tok = createToken(token.MINUS, l.char)
+	case '!':
+		tok = createToken(token.BANG, l.char)
+	case '*':
+		tok = createToken(token.ASTERISK, l.char)
+	case '/':
+		tok = createToken(token.SLASH, l.char)
+	case '<':
+		tok = createToken(token.LT, l.char)
+	case '>':
+		tok = createToken(token.GT, l.char)
 	case 0:
 		tok = token.Token{Type: token.EOF, Literal: ""}
 	default:

@@ -13,6 +13,11 @@ const (
 	IDENT    = "IDENT"
 	LET      = "LET"
 	INT      = "INT"
+	TRUE     = "TRUE"
+	FALSE    = "FALSE"
+	IF       = "IF"
+	ELSE     = "ELSE"
+	RETURN   = "RETURN"
 
 	ASSIGN      = "="
 	PLUS        = "+"
@@ -20,18 +25,30 @@ const (
 	LEFT_PAREN  = "("
 	RIGHT_BRACE = "}"
 	LEFT_BRACE  = "{"
-	COMMA     = ","
+	COMMA       = ","
 	SEMICOLON   = ";"
+	GT          = ">"
+	LT          = "<"
+	MINUS       = "-"
+	BANG        = "!"
+	ASTERISK    = "*"
+	SLASH       = "/"
 
 	ILLEGAL = "ILLEGAL"
 	EOF     = "EOF"
 )
 
 var keywords = map[string]TokenType{
-	"fn" : FUNCTION,
-	"let" : LET,
+	"fn":     FUNCTION,
+	"let":    LET,
+	"true":   TRUE,
+	"false":  FALSE,
+	"if":     IF,
+	"else":   ELSE,
+	"return": RETURN,
 }
-func GetKeywordOrIdentType(literal string) TokenType{
+
+func GetKeywordOrIdentType(literal string) TokenType {
 	if keyword, ok := keywords[literal]; ok {
 		return keyword
 	}
