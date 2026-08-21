@@ -54,7 +54,13 @@ func (l *Lexer) generateToken() token.Token {
 	case ',':
 		tok = createToken(token.COMMA, l.char)
 	case '-':
-		tok = createToken(token.MINUS, l.char)
+		if isDigit(l.peekChar()) {
+			l.readChar()
+			literal := "-" + l.readNumber()
+			return token.Token{Type: token.INT, Literal: literal}
+		} else {
+			tok = createToken(token.MINUS, l.char)
+		}
 	case '!':
 		if l.peekChar() == '=' {
 			tok = l.createTwoCharToken(l.peekChar(), token.NOT_EQ)
