@@ -33,7 +33,7 @@ func TestLexingCondensedInput(t *testing.T) {
 	}
 
 	for i, test := range tests {
-		tok := lexer.generateToken()
+		tok := lexer.GenerateToken()
 
 		if tok.Type != test.expectedType {
 			t.Fatalf("TYPE ERROR: at test %d. expected %q, got %q", i, test.expectedType, tok.Type)
@@ -100,7 +100,7 @@ func TestLexingInput(t *testing.T) {
 	l := New(input)
 
 	for i, test := range tests {
-		tok := l.generateToken()
+		tok := l.GenerateToken()
 
 		if tok.Type != test.expectedType {
 			t.Fatalf("TYPE ERROR: at test %d. expected %q, got %q", i, test.expectedType, tok.Type)
@@ -212,7 +212,7 @@ if (-5 < 10) {
 	l := New(input)
 
 	for i, test := range tests {
-		tok := l.generateToken()
+		tok := l.GenerateToken()
 
 		if tok.Type != test.expectedType {
 			t.Fatalf("TYPE ERROR: at test %d. expected %q, got %q", i, test.expectedType, tok.Type)

@@ -27,7 +27,7 @@ func (l *Lexer) readChar() {
 	l.readPosition++
 }
 
-func (l *Lexer) generateToken() token.Token {
+func (l *Lexer) GenerateToken() token.Token {
 	var tok token.Token
 
 	l.eatWhiteSpaces()
